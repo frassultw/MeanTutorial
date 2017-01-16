@@ -13,9 +13,7 @@
     "express": "~4.14.0",
     "mongoose": "^4.7.6",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
-  },
-  "devDependencies": {
+    "serve-favicon": "~2.3.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
   }
