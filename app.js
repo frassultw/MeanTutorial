@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var chai = require('chai');
+var expect = chai.expect;
+
 var mongoose = require('mongoose');
 require('./models/Posts');
 require('./models/Comments');
