@@ -15,7 +15,8 @@ var users = require('./routes/users');
 var app = express();
 
 //connect to local mongo db
-mongoose.connect($MONGODB);
+var conn = ENV['MONGODB_URI'];
+mongoose.connect(conn);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
