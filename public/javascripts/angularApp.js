@@ -35,13 +35,13 @@ app.factory('posts', ['$http', function($http){
     posts: [{title: 'Hello', link: '', upvotes: 0 , comments: []}]
   };
   o.getAll = function() {
-      return $http.get('/posts').success(function(data){
+      return $http.get('/posts').then(function(data){
         angular.copy(data, o.posts);
       });
   };
   o.create = function(post) {
-      return $http.post('/posts', post).success(function(data){
-          o.posts.push(data);
+      return $http.post('/posts', post).then(function(response){
+          o.posts.push(response.data);
       });
   };
   o.upvote = function(post) {
@@ -67,7 +67,6 @@ app.controller('MainCtrl', [
   'posts',
   function ($scope, posts ) {
     $scope.test = 'Hello World!';
-
     $scope.posts = posts.posts;
 
     $scope.addPost = function(){
