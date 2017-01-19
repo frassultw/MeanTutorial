@@ -45,8 +45,7 @@ app.factory('posts', ['$http', function($http){
       });
   };
   o.upvote = function(post) {
-    return $http.put('/posts/' + post._id + '/upvote')
-      .success(function(data){
+    return $http.put('/posts/' + post._id + '/upvote').then(function(res){
           post.upvotes += 1;
       });
   };
@@ -57,6 +56,12 @@ app.factory('posts', ['$http', function($http){
   };
   o.addComment = function(id, comment) {
       return $http.post('/posts/' + id + '/comments', comment);
+  };
+  o.upvoteComment = function(post, comment) {
+    return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/upvote')
+        .then(function(res){
+            comment.upvotes += 1;
+        });
   };
 
   return o;
@@ -103,6 +108,10 @@ app.controller('PostsCtrl', [
         $scope.post.comments.push(comment);
       });
       $scope.body = '';
+    };
+
+    $scope.incrementUpvotes = function(comment){
+      posts.upvoteComment(post, comment);
     };
 
   }]);
