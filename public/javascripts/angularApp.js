@@ -35,13 +35,13 @@ app.factory('posts', ['$http', function($http){
     posts: [{title: 'Hello', link: '', upvotes: 0 , comments: []}]
   };
   o.getAll = function() {
-      return $http.get('/posts').then(function(data){
-        angular.copy(data, o.posts);
+      return $http.get('/posts').then(function(res){
+        angular.copy(res.data, o.posts);
       });
   };
   o.create = function(post) {
-      return $http.post('/posts', post).then(function(response){
-          o.posts.push(response.data);
+      return $http.post('/posts', post).then(function(res){
+          o.posts.push(res.data);
       });
   };
   o.upvote = function(post) {
