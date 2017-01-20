@@ -87,5 +87,22 @@ describe('MainCtrl', function(){
 
         }));
     });
+
+    describe('upvotePost()', function(){
+        it('should increment a posts upvotes by 1', inject(function($controller){
+            var scope = {};
+            var post = { title:'Test Post', link: 'http://test.com'};
+
+            var mainCtrl = $controller('MainCtrl', {
+                $scope: scope,
+                posts: postsMock
+            });
+            
+            scope.incrementUpvotes(post);
+            
+            expect(postsMock.upvote.should.have.callCount(1));
+            
+        }));
+    });
 });
 
